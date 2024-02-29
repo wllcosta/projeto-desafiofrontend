@@ -1,8 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import UserEdit from '../components/UserEdit';
-
-import { toast,ToastContainer } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 export default function Users() {
@@ -71,16 +70,18 @@ export default function Users() {
   return (
     <div className="flex flex-col">
       
-    <ToastContainer />
+    
       <div className="flex flex-col">
         <div className='flex'>
           <h1 className='text-zinc-300 bg-zinc-700 text-xl flex items-center justify-center py-3.5 w-full'>
             Lista de Usuários:
           </h1>
-          <div className="flex gap-1">
-            <button className='bg-emerald-800 rounded text-white p-4 mt-0 mr-0' onClick={handleEdit}>Editar</button>
-            <button className='bg-red-800 rounded text-white p-4 mt-' onClick={handleDelete}>Excluir</button>
+          { selectedUser && 
+            <div className="flex gap-2 pe-1">
+            <button className='bg-emerald-700 rounded text-white p-4' onClick={handleEdit}>Editar</button>
+            <button className='bg-red-700 rounded text-white p-4' onClick={handleDelete}>Excluir</button>
           </div>
+          }
         </div>
         <table className='w-full'>
           <thead className='text-center'>

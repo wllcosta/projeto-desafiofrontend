@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import axios from 'axios';
-import { toast,ToastContainer } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from "react-router-dom";
 
@@ -50,7 +50,6 @@ export default function UserCreate() {
 
   return (
     <div>
-      <ToastContainer />
       <h1 className='text-zinc-300 bg-zinc-700 text-xl flex items-center justify-center py-4'>
         Criação de Usuários:
       </h1>
@@ -84,7 +83,7 @@ export default function UserCreate() {
           />
         </div>
         {/* Exibe mensagem de erro, se houver */}
-        {error && <p className="text-red-500">{error}</p>}
+        {error && <p className="text-red-500 p-1 bg-zinc-300">{error}</p>}
         {/* Botão de envio */}
         <button
           type="submit"

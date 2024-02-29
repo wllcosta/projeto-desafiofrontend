@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import axios from 'axios';
-import { toast,ToastContainer } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 export default function UserEdit(props) {
   // Estado para armazenar o nome e o email do novo usuário
@@ -24,6 +24,11 @@ export default function UserEdit(props) {
       return;
     }
 
+    if (name.length >=100 ){
+      setError("O campo não pode ter mais que 100 caracteres.");
+      return;
+    }
+
     // Validação do campo Email
     if (!email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       setError("Por favor, insira um e-mail válido.");
@@ -39,7 +44,7 @@ export default function UserEdit(props) {
       toast.success("Usuario atualizado com sucesso")
     })
     .catch((error)=>{
-      toast.error("Falha ao atualizar o usuario"+ JSON.stringify(error))
+      toast.error("Falha ao atualizar o usuario")
     })
     .finally(()=>{
       setIsUpdating(false)
@@ -47,14 +52,13 @@ export default function UserEdit(props) {
   };
 
   return (
-    <div>
-      
-      <ToastContainer />
+    <div className='flex flex-col w-full p-0 rounded border border-zinc-700 m-2'>
+      <div className="flex flex-col ">
       <h1 className='text-zinc-300 bg-zinc-700 text-xl flex items-center justify-center py-4'>
         Edição de Usuários:
       </h1>
       {/* Renderiza o formulário de criação de usuário */}
-      <form className="max-w-sm mx-auto" onSubmit={handleSubmit}>
+      <form className="max-w-sm mx-auto p-2 w-80" onSubmit={handleSubmit}>
         {/* Campo Nome Completo */}
         <div className="mb-5">
           <label htmlFor="name" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nome:</label>
@@ -83,8 +87,9 @@ export default function UserEdit(props) {
           />
         </div>
         {/* Exibe mensagem de erro, se houver */}
-        {error && <p className="text-red-500">{error}</p>}
+        {error && <p className="text-red-500 p-2 mb-1 bg-zinc-700 rounded">{error}</p>}
         {/* Botão de envio */}
+        <div className='flex justify-between w-full'>
         <button
          disabled={isUpdating}
           type="submit"
@@ -92,9 +97,10 @@ export default function UserEdit(props) {
         >
           Enviar
         </button>
-
-        <button className="bg-orange-200 rounded text-zinc-500" onClick={props.cancelEditing}>Cancelar</button>
+        <button className="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800" onClick={props.cancelEditing}>Cancelar</button>
+        </div>
       </form>
+      </div>
     </div>
   );
 }
