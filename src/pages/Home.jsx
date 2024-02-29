@@ -6,7 +6,7 @@ export const Home = function () {
             w-full
             items-center justify-center
             '>
-                <h1>Hello Tailwind Home</h1>
+                <h1>Desafio Front End</h1>
             </div>
         </>
     );
