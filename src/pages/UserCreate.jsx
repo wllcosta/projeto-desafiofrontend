@@ -9,9 +9,9 @@ export default function UserCreate() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
-  
+
   const navigate = useNavigate();
-  
+
   // Função para lidar com a submissão do formulário
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -22,8 +22,8 @@ export default function UserCreate() {
       return;
     }
 
-    
-    if (name.length >=100 ){
+
+    if (name.length >= 100) {
       setError("O campo não pode ter mais que 100 caracteres.");
       return;
     }

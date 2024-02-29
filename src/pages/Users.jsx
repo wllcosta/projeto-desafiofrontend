@@ -9,7 +9,7 @@ export default function Users() {
   const [users, setUsers] = useState([]);
   // Estado para armazenar o usuário selecionado
   const [selectedUser, setSelectedUser] = useState(null);
-  const [isEditing, setIsEditing] =useState(false)
+  const [isEditing, setIsEditing] = useState(false)
 
 
   const cancelEditing = () => {
@@ -27,12 +27,12 @@ export default function Users() {
     } catch (error) {
       // Trata erros caso ocorram
       toast.error('Erro ao buscar usuários:', error);
-    } finally{
+    } finally {
       setSelectedUser(null)
     }
   };
 
-  
+
 
   useEffect(() => {
 
@@ -69,18 +69,18 @@ export default function Users() {
 
   return (
     <div className="flex flex-col">
-      
-    
+
+
       <div className="flex flex-col">
         <div className='flex'>
           <h1 className='text-zinc-300 bg-zinc-700 text-xl flex items-center justify-center py-3.5 w-full'>
             Lista de Usuários:
           </h1>
-          { selectedUser && 
+          {selectedUser &&
             <div className="flex gap-2 pe-1">
-            <button className='bg-emerald-700 rounded text-white p-4' onClick={handleEdit}>Editar</button>
-            <button className='bg-red-700 rounded text-white p-4' onClick={handleDelete}>Excluir</button>
-          </div>
+              <button className='bg-emerald-700 rounded text-white p-4' onClick={handleEdit}>Editar</button>
+              <button className='bg-red-700 rounded text-white p-4' onClick={handleDelete}>Excluir</button>
+            </div>
           }
         </div>
         <table className='w-full'>
@@ -115,7 +115,7 @@ export default function Users() {
       {selectedUser && isEditing && (
         <div className="flex fixed top-0 w-full h-full bg-zinc-800 items-center justify-center">
           <UserEdit user={selectedUser} atualizaTabela={fetchUsers}
-         cancelEditing={cancelEditing}/>
+            cancelEditing={cancelEditing} />
         </div>
       )}
     </div>
